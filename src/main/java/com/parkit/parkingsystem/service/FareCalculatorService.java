@@ -16,6 +16,8 @@ public class FareCalculatorService {
 
         Date inHour = ticket.getInTime();
         Date outHour = ticket.getOutTime();
+        double discount = 0.95;
+
 
         long inTimeInMilliseconds = inHour.getTime();
         long outTimeInMilliseconds = outHour.getTime();
@@ -23,6 +25,11 @@ public class FareCalculatorService {
         double durationInMilliseconds = outTimeInMilliseconds - inTimeInMilliseconds;
         double durationInHours =  (durationInMilliseconds / (1000d * 60d * 60d));
 
+        if(durationInHours <= 0.5 ){
+            durationInHours = 0;
+        }
+
+        boolean userRecurrent = ticket.getRecurrent();
 
         switch (ticket.getParkingSpot().getParkingType()){
             case CAR: {
@@ -34,6 +41,10 @@ public class FareCalculatorService {
                 break;
             }
             default: throw new IllegalArgumentException("Unkown Parking Type");
+        }
+        if (userRecurrent) {
+            double price = Math.round(ticket.getPrice() * discount * 100.0) / 100.0;
+            ticket.setPrice(price);
         }
     }
 }
