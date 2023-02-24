@@ -111,22 +111,37 @@ public class ParkingDataBaseIT {
         ticket.setRecurrent(true);
         ticketDAO.saveTicket(ticket);
 
-        ticketDAO.updateTicket(ticket);
-       // Ticket ticketUpDate = ticketDAO.updateTicket(true);
+        ticketDAO.getTicket("ABCD");
+        Ticket ticket1 = ticketDAO.getTicket("ABCD");
+        LocalDateTime ldt = LocalDateTime.ofInstant(inTime.toInstant(), ZoneId.systemDefault());
+        LocalDateTime ldt1 = LocalDateTime.ofInstant(ticket1.getInTime().toInstant(), ZoneId.systemDefault());
+        Date outTime = new Date();
+        ticket1.setOutTime(outTime);
+        ticket1.setPrice(1.5);
+        ticketDAO.updateTicket(ticket1);
+
+        assertEquals(ticket.getParkingSpot().getId(), ticket1.getParkingSpot().getId());
+        assertEquals(ticket.getVehicleRegNumber(), ticket1.getVehicleRegNumber());
+        assertEquals(ldt.getYear(), ldt1.getYear());
+        assertEquals(ldt.getMonth(), ldt1.getMonth());
+        assertEquals(ldt.getDayOfMonth(), ldt1.getDayOfMonth());
+        assertEquals(ldt.getHour(), ldt1.getHour());
+        assertEquals(ldt.getMinute(), ldt1.getMinute());
+        assertEquals(ticket.getOutTime(), ticket1.getOutTime() );
+        assertEquals(ticket.getRecurrent(), ticket1.getRecurrent() );
 
 
+/*
+crée un ticket
+get ticket
+update ticket
+compare
+ */
 
 
-        // add ticket
-        //update ticket
-        // get ticket
-        // compare ticket
 
 
     }
 
 }
-//test
-// mvn
-//jacoco
-//surefire
+
