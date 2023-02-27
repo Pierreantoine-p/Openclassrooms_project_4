@@ -73,7 +73,7 @@ public class ParkingDataBaseIT {
         ticket.setRecurrent(true);
         ticketDAO.saveTicket(ticket);
 
-        ticketDAO.getTicket("ABCD");
+
         Ticket ticket1 = ticketDAO.getTicket("ABCD");
         LocalDateTime ldt = LocalDateTime.ofInstant(inTime.toInstant(), ZoneId.systemDefault());
         LocalDateTime ldt1 = LocalDateTime.ofInstant(ticket1.getInTime().toInstant(), ZoneId.systemDefault());
@@ -102,7 +102,7 @@ public class ParkingDataBaseIT {
         Date inTime = new Date();
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.BIKE,false);
 
-        // add ticket
+
         ticket.setParkingSpot(parkingSpot);
         ticket.setVehicleRegNumber("ABCD");
         ticket.setPrice(0);
@@ -111,37 +111,25 @@ public class ParkingDataBaseIT {
         ticket.setRecurrent(true);
         ticketDAO.saveTicket(ticket);
 
-        ticketDAO.getTicket("ABCD");
         Ticket ticket1 = ticketDAO.getTicket("ABCD");
-        LocalDateTime ldt = LocalDateTime.ofInstant(inTime.toInstant(), ZoneId.systemDefault());
-        LocalDateTime ldt1 = LocalDateTime.ofInstant(ticket1.getInTime().toInstant(), ZoneId.systemDefault());
         Date outTime = new Date();
         ticket1.setOutTime(outTime);
         ticket1.setPrice(1.5);
         ticketDAO.updateTicket(ticket1);
 
-        assertEquals(ticket.getParkingSpot().getId(), ticket1.getParkingSpot().getId());
-        assertEquals(ticket.getVehicleRegNumber(), ticket1.getVehicleRegNumber());
+        Ticket ticket2 = ticketDAO.getTicket("ABCD");
+        LocalDateTime ldt = LocalDateTime.ofInstant(outTime.toInstant(), ZoneId.systemDefault());
+        LocalDateTime ldt1 = LocalDateTime.ofInstant(ticket2.getOutTime().toInstant(), ZoneId.systemDefault());
+
+        assertEquals(ticket1.getPrice(), ticket2.getPrice() );
         assertEquals(ldt.getYear(), ldt1.getYear());
         assertEquals(ldt.getMonth(), ldt1.getMonth());
         assertEquals(ldt.getDayOfMonth(), ldt1.getDayOfMonth());
         assertEquals(ldt.getHour(), ldt1.getHour());
         assertEquals(ldt.getMinute(), ldt1.getMinute());
-        assertEquals(ticket.getOutTime(), ticket1.getOutTime() );
-        assertEquals(ticket.getRecurrent(), ticket1.getRecurrent() );
-
-
-/*
-crée un ticket
-get ticket
-update ticket
-compare
- */
-
-
-
 
     }
+
 
 }
 
