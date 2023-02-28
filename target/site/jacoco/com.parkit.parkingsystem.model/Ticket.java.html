@@ -22,48 +22,57 @@ import java.util.Date;
 <span class="nc" id="L22">        this.id = id;</span>
 <span class="nc" id="L23">    }</span>
 
-<span class="fc" id="L25">    public ParkingSpot getParkingSpot() { return parkingSpot; }</span>
+<span class="fc" id="L25">    public ParkingSpot getParkingSpot() { return new ParkingSpot(parkingSpot.getId(), parkingSpot.getParkingType(), parkingSpot.isAvailable()) ; }</span>
 
     public void setParkingSpot(ParkingSpot parkingSpot) {
-<span class="fc" id="L28">        this.parkingSpot = parkingSpot;</span>
-<span class="fc" id="L29">    }</span>
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">        if(parkingSpot != null){</span>
+<span class="fc" id="L29">            this.parkingSpot = new ParkingSpot(parkingSpot.getId(), parkingSpot.getParkingType(), parkingSpot.isAvailable()) ;</span>
+        }else {
+<span class="nc" id="L31">            this.parkingSpot = null;</span>
+        }
+<span class="fc" id="L33">    }</span>
 
     public String getVehicleRegNumber() {
-<span class="fc" id="L32">        return vehicleRegNumber;</span>
+<span class="fc" id="L36">        return vehicleRegNumber;</span>
     }
 
     public void setVehicleRegNumber(String vehicleRegNumber) {
-<span class="fc" id="L36">        this.vehicleRegNumber = vehicleRegNumber;</span>
-<span class="fc" id="L37">    }</span>
+<span class="fc" id="L40">        this.vehicleRegNumber = vehicleRegNumber;</span>
+<span class="fc" id="L41">    }</span>
 
     public double getPrice() {
-<span class="fc" id="L40">        return price;</span>
+<span class="fc" id="L44">        return price;</span>
     }
 
     public void setPrice(double price) {
-<span class="fc" id="L44">        this.price = price;</span>
-<span class="fc" id="L45">    }</span>
+<span class="fc" id="L48">        this.price = price;</span>
+<span class="fc" id="L49">    }</span>
 
     public Date getInTime() {
-<span class="fc" id="L48">        return new Date(inTime.getTime());</span>
+<span class="fc" id="L52">        return new Date(inTime.getTime());</span>
     }
 
     public void setInTime(Date inTime) {
-<span class="fc" id="L52">        this.inTime = new Date(inTime.getTime());</span>
-<span class="fc" id="L53">    }</span>
+<span class="fc" id="L56">        this.inTime = new Date(inTime.getTime());</span>
+<span class="fc" id="L57">    }</span>
 
-<span class="fc" id="L55">    public Date getOutTime() {return new Date(outTime.getTime());}</span>
+<span class="fc" id="L59">    public Date getOutTime() {return new Date(outTime.getTime());}</span>
 
     public void setOutTime(Date outTime) {
-<span class="fc" id="L58">        this.outTime = new Date(outTime.getTime());</span>
-<span class="fc" id="L59">    }</span>
+        //outTime != null ? this.outTime = new Date(outTime.getTime()) : this.outTime = null;
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">        if(outTime != null) {</span>
+<span class="fc" id="L64">            this.outTime = new Date(outTime.getTime());</span>
+        }else {
+<span class="nc" id="L66">            this.outTime = null;</span>
+        }
+<span class="fc" id="L68">    }</span>
 
     public boolean getRecurrent(){
-<span class="fc" id="L62">        return recurrent;</span>
+<span class="fc" id="L71">        return recurrent;</span>
     }
 
     public void setRecurrent(boolean recurrent){
-<span class="fc" id="L66">        this.recurrent = recurrent;</span>
-<span class="fc" id="L67">    }</span>
+<span class="fc" id="L75">        this.recurrent = recurrent;</span>
+<span class="fc" id="L76">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

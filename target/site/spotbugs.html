@@ -68,7 +68,7 @@
 <th>Missing Classes</th></tr>
 <tr class="b">
 <td>14</td>
-<td>6</td>
+<td>1</td>
 <td>0</td>
 <td>0</td></tr></table></section><section>
 <h2><a name="Files"></a>Files</h2>
@@ -77,80 +77,17 @@
 <th>Class</th>
 <th>Bugs</th></tr>
 <tr class="b">
-<td><a href="#com.parkit.parkingsystem.dao.TicketDAO">com.parkit.parkingsystem.dao.TicketDAO</a></td>
-<td>2</td></tr>
-<tr class="a">
-<td><a href="#com.parkit.parkingsystem.model.Ticket">com.parkit.parkingsystem.model.Ticket</a></td>
-<td>2</td></tr>
-<tr class="b">
-<td><a href="#com.parkit.parkingsystem.service.ParkingService">com.parkit.parkingsystem.service.ParkingService</a></td>
-<td>1</td></tr>
-<tr class="a">
 <td><a href="#com.parkit.parkingsystem.util.InputReaderUtil">com.parkit.parkingsystem.util.InputReaderUtil</a></td>
-<td>1</td></tr></table></section><a name="com.parkit.parkingsystem.dao.TicketDAO"></a><section>
-<h3><a name="com.parkit.parkingsystem.dao.TicketDAO"></a>com.parkit.parkingsystem.dao.TicketDAO</h3>
-<table border="0" class="bodyTable">
-<tr class="b">
-<th>Bug</th>
-<th>Category</th>
-<th>Details</th>
-<th>Line</th>
-<th>Priority</th></tr>
-<tr class="a">
-<td>Alimentation &#xe0; perte d'une variable locale dans la m&#xe9;thode com.parkit.parkingsystem.dao.TicketDAO.saveTicket(Ticket)</td>
-<td>STYLE</td>
-<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#DLS_DEAD_LOCAL_STORE">DLS_DEAD_LOCAL_STORE</a></td>
-<td>37</td>
-<td>Medium</td></tr>
-<tr class="b">
-<td>Test de nullit&#xe9; redondant sur une valeur non nulle dans com.parkit.parkingsystem.dao.TicketDAO.saveTicket(Ticket)</td>
-<td>STYLE</td>
-<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE">RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE</a></td>
-<td>34</td>
-<td>Medium</td></tr></table></section><a name="com.parkit.parkingsystem.model.Ticket"></a><section>
-<h3><a name="com.parkit.parkingsystem.model.Ticket"></a>com.parkit.parkingsystem.model.Ticket</h3>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Bug</th>
-<th>Category</th>
-<th>Details</th>
-<th>Line</th>
-<th>Priority</th></tr>
-<tr class="b">
-<td>La m&#xe9;thode com.parkit.parkingsystem.model.Ticket.getParkingSpot() risque d'exposer sa repr&#xe9;sentation interne en renvoyant com.parkit.parkingsystem.model.Ticket.parkingSpot</td>
-<td>MALICIOUS_CODE</td>
-<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP">EI_EXPOSE_REP</a></td>
-<td>25</td>
-<td>Medium</td></tr>
-<tr class="a">
-<td>La m&#xe9;thode com.parkit.parkingsystem.model.Ticket.setParkingSpot(ParkingSpot) risque d'exposer sa repr&#xe9;sentation interne en stockant un objet externe modifiable dans com.parkit.parkingsystem.model.Ticket.parkingSpot</td>
-<td>MALICIOUS_CODE</td>
-<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
-<td>28</td>
-<td>Medium</td></tr></table></section><a name="com.parkit.parkingsystem.service.ParkingService"></a><section>
-<h3><a name="com.parkit.parkingsystem.service.ParkingService"></a>com.parkit.parkingsystem.service.ParkingService</h3>
-<table border="0" class="bodyTable">
-<tr class="b">
-<th>Bug</th>
-<th>Category</th>
-<th>Details</th>
-<th>Line</th>
-<th>Priority</th></tr>
-<tr class="a">
-<td>Un appel de m&#xe9;thode dans com.parkit.parkingsystem.service.ParkingService.processIncomingVehicle() passe null &#xe0; un param&#xe8;tre d&#xe9;r&#xe9;f&#xe9;renc&#xe9; de fa&#xe7;on inconditionnelle dans com.parkit.parkingsystem.model.Ticket.setOutTime(Date)</td>
-<td>CORRECTNESS</td>
-<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#NP_NULL_PARAM_DEREF_ALL_TARGETS_DANGEROUS">NP_NULL_PARAM_DEREF_ALL_TARGETS_DANGEROUS</a></td>
-<td>46</td>
-<td>Medium</td></tr></table></section><a name="com.parkit.parkingsystem.util.InputReaderUtil"></a><section>
+<td>1</td></tr></table></section><a name="com.parkit.parkingsystem.util.InputReaderUtil"></a><section>
 <h3><a name="com.parkit.parkingsystem.util.InputReaderUtil"></a>com.parkit.parkingsystem.util.InputReaderUtil</h3>
 <table border="0" class="bodyTable">
-<tr class="b">
+<tr class="a">
 <th>Bug</th>
 <th>Category</th>
 <th>Details</th>
 <th>Line</th>
 <th>Priority</th></tr>
-<tr class="a">
+<tr class="b">
 <td>Found reliance on default encoding in com.parkit.parkingsystem.util.InputReaderUtil.&lt;static initializer for InputReaderUtil&gt;(): new java.util.Scanner(InputStream)</td>
 <td>I18N</td>
 <td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#DM_DEFAULT_ENCODING">DM_DEFAULT_ENCODING</a></td>

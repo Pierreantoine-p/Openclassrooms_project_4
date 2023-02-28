@@ -22,10 +22,14 @@ public class Ticket {
         this.id = id;
     }
 
-    public ParkingSpot getParkingSpot() { return parkingSpot; }
+    public ParkingSpot getParkingSpot() { return new ParkingSpot(parkingSpot.getId(), parkingSpot.getParkingType(), parkingSpot.isAvailable()) ; }
 
     public void setParkingSpot(ParkingSpot parkingSpot) {
-        this.parkingSpot = parkingSpot;
+        if(parkingSpot != null){
+            this.parkingSpot = new ParkingSpot(parkingSpot.getId(), parkingSpot.getParkingType(), parkingSpot.isAvailable()) ;
+        }else {
+            this.parkingSpot = null;
+        }
     }
 
     public String getVehicleRegNumber() {
@@ -55,7 +59,12 @@ public class Ticket {
     public Date getOutTime() {return new Date(outTime.getTime());}
 
     public void setOutTime(Date outTime) {
-        this.outTime = outTime;
+        //outTime != null ? this.outTime = new Date(outTime.getTime()) : this.outTime = null;
+        if(outTime != null) {
+            this.outTime = new Date(outTime.getTime());
+        }else {
+            this.outTime = null;
+        }
     }
 
     public boolean getRecurrent(){
