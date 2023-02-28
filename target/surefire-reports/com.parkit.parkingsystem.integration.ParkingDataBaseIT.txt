@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------------
+Test set: com.parkit.parkingsystem.integration.ParkingDataBaseIT
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 5.894 s <<< FAILURE! - in com.parkit.parkingsystem.integration.ParkingDataBaseIT
+testParkingLotExit  Time elapsed: 3.118 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "com.parkit.parkingsystem.model.Ticket.getInTime()" because "ticket1" is null
+	at com.parkit.parkingsystem.integration.ParkingDataBaseIT.testParkingACar(ParkingDataBaseIT.java:79)
+	at com.parkit.parkingsystem.integration.ParkingDataBaseIT.testParkingLotExit(ParkingDataBaseIT.java:96)
+
+testParkingACar  Time elapsed: 0.925 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "com.parkit.parkingsystem.model.Ticket.getInTime()" because "ticket1" is null
+	at com.parkit.parkingsystem.integration.ParkingDataBaseIT.testParkingACar(ParkingDataBaseIT.java:79)
+
