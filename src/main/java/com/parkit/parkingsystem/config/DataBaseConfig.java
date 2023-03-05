@@ -6,6 +6,8 @@ import org.apache.logging.log4j.Logger;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.sql.*;
 
@@ -15,7 +17,6 @@ public class DataBaseConfig {
 
     public Connection getConnection() throws ClassNotFoundException, SQLException, IOException {
         logger.info("Create DB connection");
-        Class.forName("com.mysql.cj.jdbc.Driver");
 /*
         Properties prop = new Properties();
         FileReader reader = new FileReader("database.properties");
@@ -27,15 +28,20 @@ public class DataBaseConfig {
         String password = prop.getProperty("password");
 */
         Properties prop = new Properties();
-        InputStream input = new FileInputStream("database.properties");
+       // InputStream input = new FileInputStream("database.properties");
+        InputStream input = Files.newInputStream(Paths.get("database.properties"));
         prop.load(input);
+        input.close();
 
+        String driver = prop.getProperty("driver");
         String url = prop.getProperty("url");
         String login = prop.getProperty("login");
         String password = prop.getProperty("password");
 
-        return DriverManager.getConnection
-                (url,login, password);
+        Class.forName(driver);
+        return DriverManager.getConnection(url,login, password);
+
+
 
     }
      /*
