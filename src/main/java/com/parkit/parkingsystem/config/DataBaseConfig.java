@@ -2,6 +2,10 @@ package com.parkit.parkingsystem.config;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 import java.sql.*;
 
@@ -9,16 +13,43 @@ public class DataBaseConfig {
 
     private static final Logger logger = LogManager.getLogger("DataBaseConfig");
 
-    public Connection getConnection() throws ClassNotFoundException, SQLException {
+    public Connection getConnection() throws ClassNotFoundException, SQLException, IOException {
         logger.info("Create DB connection");
         Class.forName("com.mysql.cj.jdbc.Driver");
+/*
+        Properties prop = new Properties();
+        FileReader reader = new FileReader("database.properties");
+        prop.load(reader);
+        reader.close();
+
+        String url = prop.getProperty("url");
+        String login = prop.getProperty("login");
+        String password = prop.getProperty("password");
+*/
+        Properties prop = new Properties();
+        InputStream input = new FileInputStream("database.properties");
+        prop.load(input);
+
+        String url = prop.getProperty("url");
+        String login = prop.getProperty("login");
+        String password = prop.getProperty("password");
+
+        return DriverManager.getConnection
+                (url,login, password);
+
+    }
+     /*
+        PropertiesConfiguration config = new PropertiesConfiguration();
+        config.get load(database.properties);
+        config.getString("url");
+
         ResourceBundle res = ResourceBundle.getBundle("param");
         String url = res.getString("url");
         String login = res.getString("login");
         String password = res.getString("password");
-        return DriverManager.getConnection
-                (url,login,password);
-    }
+
+                 */
+
 
     public void closeConnection(Connection con){
         if(con!=null){

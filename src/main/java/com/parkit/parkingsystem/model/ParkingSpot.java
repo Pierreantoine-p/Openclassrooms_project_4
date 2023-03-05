@@ -49,4 +49,5 @@ public class ParkingSpot {
     public int hashCode() {
         return number;
     }
+
 }
