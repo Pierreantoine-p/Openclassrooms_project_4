@@ -1,42 +1,26 @@
 package com.parkit.parkingsystem.config;
 
+import org.apache.commons.configuration.ConfigurationException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.io.FileInputStream;
+import org.apache.commons.configuration.PropertiesConfiguration;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.*;
 import java.sql.*;
 
 public class DataBaseConfig {
 
     private static final Logger logger = LogManager.getLogger("DataBaseConfig");
 
-    public Connection getConnection() throws ClassNotFoundException, SQLException, IOException {
+    public Connection getConnection() throws ClassNotFoundException, SQLException, IOException, ConfigurationException {
         logger.info("Create DB connection");
-/*
-        Properties prop = new Properties();
-        FileReader reader = new FileReader("database.properties");
-        prop.load(reader);
-        reader.close();
 
-        String url = prop.getProperty("url");
-        String login = prop.getProperty("login");
-        String password = prop.getProperty("password");
-*/
-        Properties prop = new Properties();
-       // InputStream input = new FileInputStream("database.properties");
-        InputStream input = Files.newInputStream(Paths.get("database.properties"));
-        prop.load(input);
-        input.close();
+        PropertiesConfiguration prop = new PropertiesConfiguration();
+        prop.load("database.properties");
 
-        String driver = prop.getProperty("driver");
-        String url = prop.getProperty("url");
-        String login = prop.getProperty("login");
-        String password = prop.getProperty("password");
+        String driver = prop.getString("driver");
+        String url = prop.getString("url");
+        String login = prop.getString("login");
+        String password = prop.getString("password");
 
         Class.forName(driver);
         return DriverManager.getConnection(url,login, password);
@@ -44,17 +28,6 @@ public class DataBaseConfig {
 
 
     }
-     /*
-        PropertiesConfiguration config = new PropertiesConfiguration();
-        config.get load(database.properties);
-        config.getString("url");
-
-        ResourceBundle res = ResourceBundle.getBundle("param");
-        String url = res.getString("url");
-        String login = res.getString("login");
-        String password = res.getString("password");
-
-                 */
 
 
     public void closeConnection(Connection con){
