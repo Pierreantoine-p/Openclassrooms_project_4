@@ -1,5 +1,7 @@
 package com.parkit.parkingsystem.model;
 
+import com.parkit.parkingsystem.constants.ParkingType;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -10,6 +12,7 @@ public class Ticket {
     private double price;
     private Date inTime;
     private Date outTime;
+    private boolean recurrent;
 
     public int getId() {
         return id;
@@ -19,12 +22,10 @@ public class Ticket {
         this.id = id;
     }
 
-    public ParkingSpot getParkingSpot() {
-        return parkingSpot;
-    }
+    public ParkingSpot getParkingSpot() { return new ParkingSpot(parkingSpot.getId(), parkingSpot.getParkingType(), parkingSpot.isAvailable()) ; }
 
     public void setParkingSpot(ParkingSpot parkingSpot) {
-        this.parkingSpot = parkingSpot;
+            this.parkingSpot = new ParkingSpot(parkingSpot.getId(), parkingSpot.getParkingType(), parkingSpot.isAvailable()) ;
     }
 
     public String getVehicleRegNumber() {
@@ -44,18 +45,26 @@ public class Ticket {
     }
 
     public Date getInTime() {
-        return inTime;
+        return new Date(inTime.getTime());
     }
 
     public void setInTime(Date inTime) {
-        this.inTime = inTime;
+        this.inTime = new Date(inTime.getTime());
     }
 
     public Date getOutTime() {
-        return outTime;
+        return ( outTime!= null ? new Date(outTime.getTime()) : null);
     }
 
     public void setOutTime(Date outTime) {
-        this.outTime = outTime;
+        this.outTime  = ( outTime!= null ? new Date(outTime.getTime()) : null);
+    }
+
+    public boolean getRecurrent(){
+        return recurrent;
+    }
+
+    public void setRecurrent(boolean recurrent){
+        this.recurrent = recurrent;
     }
 }
