@@ -1,24 +1,34 @@
 package com.parkit.parkingsystem.config;
 
+import org.apache.commons.configuration.ConfigurationException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.util.*;
+import org.apache.commons.configuration.PropertiesConfiguration;
+import java.io.IOException;
 import java.sql.*;
 
 public class DataBaseConfig {
 
     private static final Logger logger = LogManager.getLogger("DataBaseConfig");
 
-    public Connection getConnection() throws ClassNotFoundException, SQLException {
+    public Connection getConnection() throws ClassNotFoundException, SQLException, IOException, ConfigurationException {
         logger.info("Create DB connection");
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        ResourceBundle res = ResourceBundle.getBundle("param");
-        String url = res.getString("url");
-        String login = res.getString("login");
-        String password = res.getString("password");
-        return DriverManager.getConnection
-                (url,login,password);
+
+        PropertiesConfiguration prop = new PropertiesConfiguration();
+        prop.load("database.properties");
+
+        String driver = prop.getString("driver");
+        String url = prop.getString("url");
+        String login = prop.getString("login");
+        String password = prop.getString("password");
+
+        Class.forName(driver);
+        return DriverManager.getConnection(url,login, password);
+
+
+
     }
+
 
     public void closeConnection(Connection con){
         if(con!=null){

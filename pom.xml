@@ -74,6 +74,11 @@
             <artifactId>maven-surefire-report-plugin</artifactId>
             <version>2.22.2</version>
         </dependency>
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>1.6</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -105,7 +110,7 @@
                 <version>2.22.2</version>
                 <executions>
                     <execution>
-                        <id>unit-tests</id>
+                        <id>test</id>
                         <goals>
                             <goal>test</goal>
                         </goals>
@@ -113,32 +118,14 @@
                         <configuration>
                             <skip>false</skip>
                             <excludes>
-                                <exclude>**/*IT.java</exclude>
+                                <exclude>none</exclude>
                             </excludes>
                             <includes>
                                 <include>**/*Test.java</include>
-                            </includes>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>integration-tests</id>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                        <phase>integration-test</phase>
-                        <configuration>
-                            <skip>false</skip>
-                            <excludes>
-                                <exclude>**/*Test.java</exclude>
-                            </excludes>
-                            <includes>
                                 <include>**/*IT.java</include>
                             </includes>
                         </configuration>
                     </execution>
-
-
                 </executions>
             </plugin>
             <plugin>
@@ -192,6 +179,5 @@
                 <version>0.8.8</version>
             </plugin>
         </plugins>
-
     </reporting>
 </project>

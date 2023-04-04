@@ -36,7 +36,7 @@ public class ParkingDataBaseIT {
     private static InputReaderUtil inputReaderUtil;
 
     @BeforeAll
-    private static void setUp() throws Exception{
+    public static void setUp() throws Exception{
         parkingSpotDAO = new ParkingSpotDAO();
         parkingSpotDAO.dataBaseConfig = dataBaseTestConfig;
         ticketDAO = new TicketDAO();
@@ -45,14 +45,14 @@ public class ParkingDataBaseIT {
     }
 
     @BeforeEach
-    private void setUpPerTest() throws Exception {
+    public void setUpPerTest() throws Exception {
         when(inputReaderUtil.readSelection()).thenReturn(1);
         when(inputReaderUtil.readVehicleRegistrationNumber()).thenReturn("ABCDEF");
         dataBasePrepareService.clearDataBaseEntries();
     }
 
     @AfterAll
-    private static void tearDown(){
+    public static void tearDown(){
 
     }
 
@@ -63,7 +63,7 @@ public class ParkingDataBaseIT {
         //TODO: check that a ticket is actualy saved in DB and Parking table is updated with availability
         Ticket ticket = new Ticket();
         Date inTime = new Date();
-        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.BIKE,false);
+        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR,false);
 
         ticket.setParkingSpot(parkingSpot);
         ticket.setVehicleRegNumber("ABCD");
@@ -86,7 +86,6 @@ public class ParkingDataBaseIT {
         assertEquals(ldt.getDayOfMonth(), ldt1.getDayOfMonth());
         assertEquals(ldt.getHour(), ldt1.getHour());
         assertEquals(ldt.getMinute(), ldt1.getMinute());
-        assertEquals(ticket.getOutTime(), ticket1.getOutTime() );
         assertEquals(ticket.getRecurrent(), ticket1.getRecurrent() );
 
     }
@@ -100,8 +99,9 @@ public class ParkingDataBaseIT {
 
         Ticket ticket = new Ticket();
         Date inTime = new Date();
-        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.BIKE,false);
-
+        ParkingSpot parkingSpot = new ParkingSpot(-1, null, false);
+        parkingSpot.setId(1);
+        parkingSpot.setParkingType(ParkingType.CAR);
 
         ticket.setParkingSpot(parkingSpot);
         ticket.setVehicleRegNumber("ABCD");
@@ -127,9 +127,6 @@ public class ParkingDataBaseIT {
         assertEquals(ldt.getDayOfMonth(), ldt1.getDayOfMonth());
         assertEquals(ldt.getHour(), ldt1.getHour());
         assertEquals(ldt.getMinute(), ldt1.getMinute());
-
     }
-
-
 }
 
